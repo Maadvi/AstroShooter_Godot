@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://8aldbo2cfus0"]
+
+[ext_resource type="Script" path="res://ufo/bullet/ufo_bullet.gd" id="1_r0raw"]
+[ext_resource type="Texture2D" uid="uid://pethc2epc4x3" path="res://ufo/bullet/bullet.png" id="2_66gps"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l75vf"]
+radius = 20.8806
+
+[node name="Ufo_Bullet" type="Area2D" groups=["damageable"]]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_r0raw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_l75vf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7, 7)
+texture = ExtResource("2_66gps")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="aming_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="aming_area"]
+polygon = PackedVector2Array(6, -4, 6, 4, 51, 85, -49, 85, -6, 4, -6, -4)
+
+[node name="BulletLifeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="BulletLifeTimer" to="." method="_on_bullet_life_timer_timeout"]

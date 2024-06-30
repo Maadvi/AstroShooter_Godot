@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtwif5m5mifu3"]
+
+[ext_resource type="Texture2D" uid="uid://uir6dtjyba1h" path="res://ufo/ufop01..png" id="1_l3gbw"]
+[ext_resource type="Script" path="res://ufo/ufo.gd" id="1_xeqrv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex2tf"]
+radius = 44.0
+height = 200.0
+
+[node name="Ufo" type="Area2D" groups=["damageable", "hurt_player"]]
+position = Vector2(236, 165)
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_xeqrv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l3gbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ex2tf")
+
+[node name="FirePosition" type="Node2D" parent="."]
+position = Vector2(0, 42)
+
+[node name="FireTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
