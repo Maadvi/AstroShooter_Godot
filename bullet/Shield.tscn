@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ipnasxevv480"]
+
+[ext_resource type="Texture2D" uid="uid://d4j2f5v074th2" path="res://shield02.png" id="1_r6q6u"]
+[ext_resource type="Texture2D" uid="uid://c3gcfcbxiiufs" path="res://shield.png" id="2_p1d61"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6rtm1"]
+animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": ExtResource("1_r6q6u")
+}, {
+"duration": 0.4,
+"texture": ExtResource("2_p1d61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shield" type="AnimatedSprite2D"]
+position = Vector2(970, 328)
+sprite_frames = SubResource("SpriteFrames_6rtm1")
+autoplay = "default"
+frame = 1
+frame_progress = 0.852262
+
+[node name="Invulnerability" type="Timer" parent="."]

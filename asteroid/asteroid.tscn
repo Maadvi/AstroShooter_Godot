@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpfm1myw4cf1x"]
+
+[ext_resource type="Script" path="res://asteroid/asteroid.gd" id="1_t2iyg"]
+[ext_resource type="Texture2D" uid="uid://cea16kaff06mp" path="res://asteroid/asteroid_ss.png" id="2_ahh5f"]
+[ext_resource type="Shape2D" uid="uid://cbjtpgyigvejm" path="res://asteroid/resources/asteroid_ls.tres" id="3_df5e4"]
+
+[node name="Asteroid" type="Area2D" groups=["damageable", "hurt_player"]]
+position = Vector2(986, 703)
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_t2iyg")
+
+[node name="Sprite_Asteroid" type="Sprite2D" parent="."]
+texture = ExtResource("2_ahh5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = ExtResource("3_df5e4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["damageable"]]
+position = Vector2(3.00006, -4)
+scale = Vector2(3.975, 4.025)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

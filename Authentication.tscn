@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpfqtlroyuner"]
+
+[ext_resource type="Script" path="res://Authentication.gd" id="1_4lyq1"]
+[ext_resource type="FontFile" uid="uid://dskq0esxc2a8w" path="res://ttf/xspace-xspace-400.ttf" id="2_iw5t7"]
+
+[sub_resource type="Theme" id="Theme_7ps5s"]
+
+[sub_resource type="Theme" id="Theme_6gr67"]
+
+[sub_resource type="Theme" id="Theme_nhmru"]
+
+[sub_resource type="Theme" id="Theme_xvmdc"]
+
+[sub_resource type="Theme" id="Theme_o22np"]
+
+[sub_resource type="Theme" id="Theme_34cg2"]
+
+[node name="Authentication" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4lyq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -828.5
+offset_top = -208.5
+offset_right = 828.5
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="As" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7ps5s")
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 70
+text = "Astoshooter Firebase"
+horizontal_alignment = 1
+
+[node name="StateLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_6gr67")
+theme_override_colors/font_color = Color(0.858487, 0.918335, 0.326014, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 40
+text = "Not logged in"
+
+[node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_nhmru")
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Email"
+
+[node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_xvmdc")
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Password"
+secret = true
+
+[node name="LoginButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_o22np")
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 60
+text = "Log in"
+
+[node name="SignupButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_34cg2")
+theme_override_fonts/font = ExtResource("2_iw5t7")
+theme_override_font_sizes/font_size = 60
+text = "Sign up"
+
+[connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SignupButton" to="." method="_on_signup_button_pressed"]
