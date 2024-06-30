@@ -1,0 +1,301 @@
+[gd_scene load_steps=42 format=3 uid="uid://clkab76w5cvfk"]
+
+[ext_resource type="Script" path="res://playerd.gd" id="1_r6vvi"]
+[ext_resource type="PackedScene" uid="uid://denq8muowusfa" path="res://scoreandlife/scoreandlives.tscn" id="2_01cfm"]
+[ext_resource type="PackedScene" uid="uid://ipnasxevv480" path="res://bullet/Shield.tscn" id="3_ghbrm"]
+[ext_resource type="Texture2D" uid="uid://b436bxh80f7ch" path="res://explosion/Ship_Explosion.png" id="3_w6xv0"]
+[ext_resource type="Texture2D" uid="uid://bg6rb6s842320" path="res://bottoni/btn_dn..png" id="4_nui45"]
+[ext_resource type="Texture2D" uid="uid://ckc751q8wku4a" path="res://spaceship-anim.png" id="4_qit5f"]
+[ext_resource type="PackedScene" uid="uid://yy1oasfbf1u3" path="res://gameover/gameover.tscn" id="5_74a5p"]
+[ext_resource type="Texture2D" uid="uid://b2my5rnnek4jo" path="res://bottoni/btn_r_dn..png" id="5_msm7w"]
+[ext_resource type="Texture2D" uid="uid://dygpduulcp766" path="res://bottoni/btn_lf..png" id="6_qro7d"]
+[ext_resource type="Texture2D" uid="uid://drms8cft5k4gn" path="res://bottoni/btn_r_lf..png" id="7_ff42v"]
+[ext_resource type="AudioStream" uid="uid://bgay7dieoq304" path="res://sound/Shield.wav" id="7_q4tg5"]
+[ext_resource type="AudioStream" uid="uid://d23kyes27adjs" path="res://sound/ShipExplosion.mp3" id="7_sxr3x"]
+[ext_resource type="AudioStream" uid="uid://3hcw8k3unjo3" path="res://sound/space-shoot.wav" id="7_ub8if"]
+[ext_resource type="Texture2D" uid="uid://dhnhj0pcvvu5d" path="res://bottoni/btn_ri..png" id="8_gteqg"]
+[ext_resource type="AudioStream" uid="uid://c2m2rf2i2k6sf" path="res://sound/soundtrack.mp3" id="9_6uj6w"]
+[ext_resource type="Texture2D" uid="uid://xwa52ct66cw6" path="res://bottoni/btn_r_ri..png" id="9_kdgyh"]
+[ext_resource type="Texture2D" uid="uid://bwdw3ckpopaqm" path="res://bottoni/fr_y.png" id="10_75jd2"]
+[ext_resource type="Texture2D" uid="uid://cvmh2uhf2bxt6" path="res://bottoni/fr_r.png" id="11_g4lpm"]
+[ext_resource type="AudioStream" uid="uid://chdssmxlw4jsr" path="res://sound/TryAgain.wav" id="11_ucuho"]
+[ext_resource type="Texture2D" uid="uid://vldevp0ohkvg" path="res://bottoni/btn_up.png" id="12_ms416"]
+[ext_resource type="Script" path="res://addons/virtual_joystick/virtual_joystick.gd" id="12_yfxfn"]
+[ext_resource type="Texture2D" uid="uid://cg6knrxvn2p63" path="res://bottoni/btn_r_up.png" id="13_kjcsd"]
+[ext_resource type="Script" path="res://addons/virtual_joystick/virtual_joystick_instantiator.gd" id="13_smnlf"]
+[ext_resource type="AudioStream" uid="uid://dbfargonrx8oh" path="res://FireBonus/FBSound.mp3" id="22_6f7ah"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_16mxd"]
+radius = 4.4375
+height = 156.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yropj"]
+atlas = ExtResource("4_qit5f")
+region = Rect2(124, 0, 124, 178)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1rew"]
+atlas = ExtResource("4_qit5f")
+region = Rect2(0, 0, 124, 178)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv517"]
+atlas = ExtResource("4_qit5f")
+region = Rect2(248, 0, 124, 178)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvppb"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(0, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcvbt"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(170, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mfeq"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(340, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skxd5"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(510, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p87mq"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(680, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtef5"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(850, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkl8r"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1020, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ka0"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1190, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p30y"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1360, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgjv8"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1530, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_422ym"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1700, 0, 170, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1lx"]
+atlas = ExtResource("3_w6xv0")
+region = Rect2(1870, 0, 170, 170)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm36b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yropj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1rew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv517")
+}],
+"loop": true,
+"name": &"engine-on",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvppb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcvbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mfeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skxd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p87mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtef5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkl8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ka0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p30y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgjv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_422ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm1lx")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D" groups=["hurt_player"]]
+position = Vector2(618, 429)
+collision_layer = 2
+collision_mask = 56
+script = ExtResource("1_r6vvi")
+FireDelay = -0.5
+
+[node name="toplay" type="CanvasLayer" parent="."]
+
+[node name="VirtualJoystick" type="Control" parent="toplay"]
+visible = false
+modulate = Color(0.27451, 1, 1, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 618.0
+offset_top = 429.0
+offset_right = 658.0
+offset_bottom = 469.0
+script = ExtResource("12_yfxfn")
+pressed_color = Color(0.250519, 0.257096, 0.831227, 1)
+joystick_mode = 0
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[node name="Virtual Joystick" type="Control" parent="toplay/VirtualJoystick"]
+visible = false
+anchors_preset = 0
+offset_left = -639.0
+offset_top = 266.0
+offset_right = -319.0
+offset_bottom = 578.0
+script = ExtResource("13_smnlf")
+
+[node name="Control" type="Control" parent="toplay"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 618.0
+offset_top = 429.0
+offset_right = 658.0
+offset_bottom = 469.0
+
+[node name="btnUp" type="TouchScreenButton" parent="toplay/Control"]
+position = Vector2(-229, 254)
+texture_normal = ExtResource("12_ms416")
+texture_pressed = ExtResource("13_kjcsd")
+action = "move_up"
+
+[node name="btnDn" type="TouchScreenButton" parent="toplay/Control"]
+position = Vector2(-224, 497)
+texture_normal = ExtResource("4_nui45")
+texture_pressed = ExtResource("5_msm7w")
+action = "move_down"
+
+[node name="btnLft" type="TouchScreenButton" parent="toplay/Control"]
+position = Vector2(-379, 381)
+texture_normal = ExtResource("6_qro7d")
+texture_pressed = ExtResource("7_ff42v")
+action = "move_left"
+
+[node name="btnRgt" type="TouchScreenButton" parent="toplay/Control"]
+position = Vector2(-69, 377)
+texture_normal = ExtResource("8_gteqg")
+texture_pressed = ExtResource("9_kdgyh")
+action = "move_right"
+
+[node name="btnFire" type="TouchScreenButton" parent="toplay/Control"]
+position = Vector2(946, 395)
+texture_normal = ExtResource("10_75jd2")
+texture_pressed = ExtResource("11_g4lpm")
+action = "fire_button"
+
+[node name="scoreandlives" parent="toplay" instance=ExtResource("2_01cfm")]
+offset_left = 22.0
+offset_top = -7.0
+offset_right = 22.0
+offset_bottom = -7.0
+
+[node name="Gameover" parent="toplay" instance=ExtResource("5_74a5p")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 618.0
+offset_top = 429.0
+offset_right = 618.0
+offset_bottom = 429.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_qit5f")
+hframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(12.8451, 0.93907)
+shape = SubResource("CapsuleShape2D_16mxd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sm36b")
+animation = &"explosion"
+autoplay = "engine-on"
+
+[node name="FirePos" type="Node2D" parent="."]
+
+[node name="FireRight" type="Node2D" parent="FirePos"]
+position = Vector2(39, -43)
+
+[node name="FireLeft" type="Node2D" parent="FirePos"]
+position = Vector2(-43, -43)
+
+[node name="FireCenter" type="Node2D" parent="FirePos"]
+visible = false
+position = Vector2(-2, -80)
+
+[node name="FDT" type="Timer" parent="."]
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shield" parent="." instance=ExtResource("3_ghbrm")]
+position = Vector2(-1, -52)
+
+[node name="ShieldSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(12.8451, 0.93907)
+stream = ExtResource("7_q4tg5")
+volume_db = 3.467
+pitch_scale = 1.51
+
+[node name="ShipExplosion" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(12.8451, 0.93907)
+stream = ExtResource("7_sxr3x")
+
+[node name="SongPlayer" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(12.8451, 0.93907)
+stream = ExtResource("9_6uj6w")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ub8if")
+
+[node name="TryAgain" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ucuho")
+
+[node name="FireBonusCollected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_6f7ah")
+volume_db = 24.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

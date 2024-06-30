@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://b18y4dd3u1ih3"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_7s6ij"]
+[ext_resource type="Texture2D" uid="uid://lrse2tqoe06l" path="res://bkg.png" id="1_k3mq3"]
+[ext_resource type="Texture2D" uid="uid://cd41omi6sao5u" path="res://star.png" id="2_2416a"]
+[ext_resource type="PackedScene" uid="uid://clkab76w5cvfk" path="res://playerd.tscn" id="3_fi18q"]
+[ext_resource type="PackedScene" uid="uid://dtwif5m5mifu3" path="res://ufo/ufo.tscn" id="4_fsy7h"]
+[ext_resource type="PackedScene" uid="uid://cpfm1myw4cf1x" path="res://asteroid/asteroid.tscn" id="5_454tm"]
+[ext_resource type="Script" path="res://ufo/UfoPath.gd" id="5_kvlbj"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="8_j7c6v"]
+[ext_resource type="Script" path="res://FireBonus/FireB_Node.gd" id="9_tks42"]
+
+[sub_resource type="Curve2D" id="Curve2D_1od1f"]
+_data = {
+"points": PackedVector2Array(-95.522, -135.424, 95.522, 135.424, 1562, 71, -1.20914, -110.032, 1.20914, 110.032, 185, 144, 14.5097, -160.816, -14.5097, 160.816, 1899, 316, -44.7382, -203.135, 44.7382, 203.135, -86, 474, -77.3849, -151.142, 77.3849, 151.142, 2021, 731, -93.1037, -136.633, 93.1037, 136.633, -80, 906, -53.5223, -10.4946, 53.5223, 10.4946, 49, 0, -2.33178, -71.1194, 2.33178, 71.1194, 1561, 70)
+}
+point_count = 8
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_7s6ij")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(6.69953, 4.01378)
+texture = ExtResource("1_k3mq3")
+centered = false
+
+[node name="stars-back" type="CPUParticles2D" parent="Background"]
+position = Vector2(153.742, 1.99313)
+scale = Vector2(6.75518, 7.94695)
+amount = 60
+lifetime = 18.0
+texture = ExtResource("2_2416a")
+emission_shape = 3
+emission_rect_extents = Vector2(23, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+position = Vector2(155.085, 1.74399)
+scale = Vector2(6.75518, 7.94695)
+amount = 20
+lifetime = 6.0
+texture = ExtResource("2_2416a")
+emission_shape = 3
+emission_rect_extents = Vector2(23, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+
+[node name="star-front" type="CPUParticles2D" parent="Background"]
+position = Vector2(157.324, 1.74399)
+scale = Vector2(6.75518, 7.94695)
+amount = 20
+lifetime = 2.5
+texture = ExtResource("2_2416a")
+emission_shape = 3
+emission_rect_extents = Vector2(23, 1)
+particle_flag_align_y = true
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 16.0
+initial_velocity_max = 16.0
+linear_accel_min = 8.0
+linear_accel_max = 8.0
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+
+[node name="Player" parent="." instance=ExtResource("3_fi18q")]
+FireDelay = 0.03
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource("5_454tm")]
+position = Vector2(2046, 44)
+
+[node name="Asteroid2" parent="Asteroids" instance=ExtResource("5_454tm")]
+position = Vector2(73, 998)
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource("5_454tm")]
+position = Vector2(1858, 1002)
+
+[node name="Asteroid4" parent="Asteroids" instance=ExtResource("5_454tm")]
+position = Vector2(69, 80)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-160, 42)
+curve = SubResource("Curve2D_1od1f")
+script = ExtResource("5_kvlbj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1562, 71)
+rotates = false
+
+[node name="Ufo" parent="Path2D/PathFollow2D" instance=ExtResource("4_fsy7h")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("8_j7c6v")
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+wait_time = 2.0
+one_shot = true
+
+[node name="FireB_Node" type="Node2D" parent="."]
+script = ExtResource("9_tks42")
+
+[node name="FB_Timer" type="Timer" parent="FireB_Node"]
+
+[connection signal="ship_exploded" from="Player" to="Camera2D" method="_on_player_ship_exploded"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="FireB_Node/FB_Timer" to="FireB_Node" method="_on_fb_timer_timeout"]
